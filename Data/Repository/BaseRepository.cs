@@ -2,7 +2,6 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Data.Repository
 {
@@ -97,7 +96,7 @@ namespace Data.Repository
         }
         public async Task<bool> ExistASync(Guid id)
         {
-            return await _dataset.AnyAsync (x => x.Id.Equals(id));
+            return await _dataset.AnyAsync(x => x.Id.Equals(id));
         }
     }
 }
