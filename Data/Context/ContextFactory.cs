@@ -12,9 +12,9 @@ namespace Data.Context
     {
         public MyContext CreateDbContext(string[] args)
         {
-            var connectionString = "Data Source=.;Initial Catalog=DBTreinamento;Integrated Security=SSPI";
+            var connectionString = "Server=localhost;Port=3306;Database=dbAPI;Uid=root;Pwd=mudar@123";
             var optionsBuilder = new DbContextOptionsBuilder<MyContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version()));
             return new MyContext (optionsBuilder.Options);
         }
     }

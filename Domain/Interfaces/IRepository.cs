@@ -10,6 +10,5 @@ namespace Domain.Interfaces
         Task<T> SelectASync(Guid id);
         Task<IEnumerable<T>> SelectASync();
         Task<bool> ExistASync(Guid id);
-
     }
 }
