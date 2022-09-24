@@ -1,5 +1,4 @@
 ﻿using CrossCutting.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 namespace Configuracao_API
 {
@@ -28,7 +27,6 @@ namespace Configuracao_API
                         Name = "Gabriel Nunes Campos",
                         Email = "gabriel.nunes96@hotmail.com"
                     }
-
                 });
             });
         }
