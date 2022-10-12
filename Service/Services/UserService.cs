@@ -25,6 +25,11 @@ namespace Service.Services
         }
         public async Task<UserEntity> Put(UserEntity user)
         {
+            UserEntity retorno = Get(user.Id).Result;
+            user.CreatAt = retorno.CreatAt;
+            user.Email = user.Email == null ? retorno.Email : user.Email;
+            user.Name = user.Name == null ? retorno.Name : user.Name;
+            user.UpdateAt = DateTime.Now;
             return await _userRepository.UpdateASync(user);
         }
         public async Task<bool> Delete(Guid id)

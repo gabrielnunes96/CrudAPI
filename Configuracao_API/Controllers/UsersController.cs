@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -14,12 +15,12 @@ namespace Configuracao_API.Controllers
         {
             _service = service;
         }
-
+        [Authorize("Bearer")]
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState); //400 bad request - solitação inválida.
+                return BadRequest(ModelState);
 
             try
             {
@@ -30,8 +31,8 @@ namespace Configuracao_API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
-
-        [HttpGet] // --> localhost:3306/api/users/"Guid"
+        [Authorize("Bearer")]
+        [HttpGet]
         [Route("{id}", Name = "GetWithId")]
         public async Task<ActionResult> Get(Guid id)
         {
@@ -47,7 +48,7 @@ namespace Configuracao_API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
-
+        [Authorize("Bearer")]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserEntity user)
         {
@@ -67,7 +68,7 @@ namespace Configuracao_API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
-        //Como colocar a atualização "Dinâmica"?. Ou seja, poder atualizar os campos individualmente.
+        [Authorize("Bearer")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] UserEntity user)
         {
@@ -87,7 +88,7 @@ namespace Configuracao_API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
-
+        [Authorize("Bearer")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
